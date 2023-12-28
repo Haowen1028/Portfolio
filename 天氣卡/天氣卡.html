@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/css.css">
+</head>
+
+<body>
+    <div id="app">
+        <nav>
+            <div class="title">天&nbsp;氣&nbsp;預&nbsp;報</div>
+            <div class="area">
+                <button type="button" class="twBtn" @click="changeArea(0)">全台</button>
+                <button type="button" class="twBtn" @click="changeArea(1)">北部</button>
+                <button type="button" class="twBtn" @click="changeArea(2)">中部</button>
+                <button type="button" class="twBtn" @click="changeArea(3)">南部</button>
+                <button type="button" class="twBtn" @click="changeArea(4)">東部</button>
+                <button type="button" class="twBtn" @click="changeArea(5)">外島</button>
+            </div>
+        </nav>
+        <div class="card-region">
+            <div v-for="(city,cityName) in area" :key="cityName" class="card">
+                <br>
+                <div class="city-name">{{city.locationName}}</div>
+                <br>
+                <div class="weather">{{city.wx}}</div>
+                <br>
+                <div class="start">{{city.startTime}}</div>
+                <div>|</div>
+                <div class="end">{{city.endTime}}</div>
+                <br>
+                <div class="min">{{city.minT}}°C~{{city.maxT}}°C</div>
+                <br>
+                <div class="ci">{{city.ci}}</div>
+                <br>
+                <div class="pop">降雨機率 : {{city.pop}}%</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const { createApp } = Vue
+
+        createApp({
+            data() {
+                return {
+                    cityAll: [
+                        ['基隆市', '新北市', '臺北市', '桃園市', '新竹市', '新竹縣', '苗栗縣', '臺中市', '南投縣', '彰化縣', '雲林縣', '嘉義市', '嘉義縣', '臺南市', '高雄市', '屏東縣', '宜蘭縣', '花蓮縣', '臺東縣', '澎湖縣', '金門縣', '連江縣'],
+                        ['基隆市', '新北市', '臺北市', '桃園市', '新竹市', '新竹縣', '苗栗縣'],
+                        ['臺中市', '南投縣', '彰化縣', '雲林縣', '嘉義市', '嘉義縣'],
+                        ['臺南市', '高雄市', '屏東縣'],
+                        ['宜蘭縣', '花蓮縣', '臺東縣'],
+                        ['澎湖縣', '金門縣', '連江縣'],
+                    ],
+                    area: [],
+                    orgData: {},
+                    selectCities: 0,
+                }
+            },
+            mounted() {
+                const url = 'https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-D074525B-C033-4B85-BE6A-3F1C6A162C52';
+                fetch(url)
+                    .then(function (response) {
+                        return response.json();
+                    }).then((myJson) => {
+                        this.organizationData(myJson.records.location);
+                        this.changeArea(0);
+                    });
+            },
+            methods: {
+                organizationData(data) {
+                    data.forEach((locationData) => {
+                        const locationName = locationData.locationName;
+                        let loc_we0_ti0 = locationData.weatherElement[0].time[0];
+                        let startTime = loc_we0_ti0.startTime;
+                        let endTime = loc_we0_ti0.endTime;
+                        let wx = loc_we0_ti0.parameter.parameterName;
+                        let minT = locationData.weatherElement[2].time[0].parameter.parameterName;
+                        let maxT = locationData.weatherElement[4].time[0].parameter.parameterName;
+                        let ci = locationData.weatherElement[3].time[0].parameter.parameterName;
+                        let pop = locationData.weatherElement[1].time[0].parameter.parameterName;
+
+                        this.orgData[locationName] = {
+                            locationName,
+                            wx,
+                            startTime,
+                            endTime,
+                            minT,
+                            maxT,
+                            ci,
+                            pop,
+                        }
+                    });
+                    console.log(this.orgData);
+
+                },
+                changeArea(index) {
+                    const selectCities = this.cityAll[index];
+                    this.area = [];
+
+                    selectCities.forEach(cityName => {
+                        this.area.push(this.orgData[cityName]);
+                    });
+                },
+            },
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

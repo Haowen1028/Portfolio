@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #nav {
+            position: fixed;
+            background-color: brown;
+            width: calc(80% - 10px*2);
+            left: 10%;
+            padding: 10px;
+            z-index: 9;
+
+        }
+
+        #logo {
+            width: 80px;
+            height: 80px;
+            background-color: aqua;
+            border-radius: 50%;
+            background-image: url('./下載\ \(2\).jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            float: left;
+        }
+        #logo:hover{
+            transform: scale(1.2) ;
+        }
+
+        #logo:active{
+            transform: scale(0.9) ;
+        }
+
+        #nav-btn-all {
+
+            float: right;
+            padding: 10px;
+
+        }
+
+        .nav-btn {
+            background-color: pink;
+            width: 100px;
+            height: 60px;
+            float: left;
+            font-size: 24px;
+            text-align: center;
+            line-height: 60px;
+            font-weight: bold;
+            border-radius: 10px;
+            margin-left: 10px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* a:link 連結尚未拜訪過  */
+        a:link {
+            background-color: blueviolet;
+            color: aqua;
+        }
+
+        /* a:hover 當滑鼠移到物件上方所產的效果 */
+        a:hover {
+            background-color: bisque;
+            color: gold;
+        }
+
+        /* a:active 滑鼠按下去時 產生的效果 */
+        a:active {
+            background-color: black;
+            color: white;
+        }
+
+        /* a:visited: 進入過連結 */
+        a:visited {
+            background-color: aqua;
+            color: gray;
+        }
+
+        #container {
+            background-color: aqua;
+            width: 80%;
+            height: 300px;
+            margin: auto;
+        }
+
+        .banner {
+            width: 100%;
+            height: calc(50vh - 50px);
+            background-color: blue;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            padding-top: calc(50vh - 50px);
+            position: relative;
+
+        }
+
+        #banner-1-anchor,
+        #banner-2-anchor,
+        #banner-3-anchor {
+            position: absolute;
+            top: -100px;
+        }
+
+        #banner-1 {
+            background-image: url('./img_parallax.jpg');
+            
+        }
+
+
+        .mask {
+            background-color: black;
+            width: 100%;
+            height: 50vh;
+            opacity: 0.5;
+            position: relative;
+        }
+
+        .btn {
+            width: 150px;
+            height: 50px;
+            background-color: white;
+            font-size: 32px;
+            text-align: center;
+            border-radius: 5px;
+            position: absolute;
+            top: calc(50% - 25px);
+            right: calc(50% - 75px);
+            line-height: 50px;
+        }
+
+        #banner-2 {
+            background-image: url('./img_parallax2.jpg');
+
+        }
+
+        .mask {
+            background-color: black;
+            width: 100%;
+            height: 50vh;
+            opacity: 0.5;
+            position: relative;
+        }
+
+        .btn {
+            width: 150px;
+            height: 50px;
+            background-color: white;
+            font-size: 32px;
+            text-align: center;
+            border-radius: 5px;
+            position: absolute;
+            top: calc(50% - 25px);
+            right: calc(50% - 75px);
+            line-height: 50px;
+        }
+
+        #banner-3 {
+            background-image: url('./img_parallax3.jpg');
+
+        }
+
+        .mask {
+            background-color: black;
+            width: 100%;
+            height: 50vh;
+            opacity: 0.5;
+            position: relative;
+        }
+
+        .btn {
+            width: 150px;
+            height: 50px;
+            line-height: 50px;
+            background-color: white;
+            font-size: 32px;
+            text-align: center;
+            border-radius: 5px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #top,
+        #top2 {
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            font-size: 24px;
+            text-align: center;
+            line-height: 50px;
+            margin-bottom: 10px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="nav">
+        <div id="logo"></div>
+        <div id="nav-btn-all">
+            <!-- 超連結 a:ancher 錨點 -->
+            <!-- href:錨點目的地=>連結的位置 
+            herf:Hypertext reference-->
+            <!-- <a href=""></a> -->
+            <a href="#banner-1-anchor" class="nav-btn">第一區</a>
+            <a href="#banner-2-anchor" class="nav-btn">第二區</a>
+            <a href="#banner-3-anchor" class="nav-btn">第三區</a>
+        </div>
+
+    </div>
+    <div id="container">
+        <div id="banner-1" class="banner">
+            <div id="banner-1-anchor"></div>
+            <div class="mask">
+                <div class="btn">第一區</div>
+            </div>
+
+        </div>
+        <div id="banner-2" class="banner">
+            <div id="banner-2-anchor"></div>
+            <div class="mask">
+                <div class="btn">第二區</div>
+            </div>
+
+        </div>
+        <div id="banner-3" class="banner">
+            <div id="banner-3-anchor"></div>
+            <div class="mask">
+                <div class="btn">第三區</div>
+            </div>
+
+        </div>
+    </div>
+    <!-- <div id="top"><a href="#"></a>TOP</div> -->
+    <!-- <a href="#"><div id="top">Top</div></a> -->
+    <!-- <a href="#" id="top2">Top2</d></a> -->
+    <a href="#" id="top2">Top</a>
+</body>
+
+</html>

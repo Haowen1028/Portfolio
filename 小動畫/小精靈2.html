@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .fairy-right {
+            width: 0px;
+            height: 0px;
+            position: relative;
+            animation: right 5s linear 0s infinite;
+        }
+
+        .fairy-right::before {
+            content: " ";
+            position: absolute;
+            border-width: 100px;
+            border-radius: 50%;
+            border-style: solid;
+            border-top-color: yellow;
+            border-right-color: transparent;
+            border-bottom-color: yellow;
+            border-left-color: yellow;
+
+            animation: down 1s linear 0s infinite alternate;
+        }
+
+        .fairy-right::after {
+            content: " ";
+            position: absolute;
+            border-width: 100px;
+            border-radius: 50%;
+            border-style: solid;
+            border-top-color: yellow;
+            border-right-color: transparent;
+            border-bottom-color: yellow;
+            border-left-color: yellow;
+
+            animation: top 1s linear 0s infinite alternate;
+        }
+
+        .eye-right {
+            position: absolute;
+            background-color: black;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            top: 50px;
+            left: 70px;
+            z-index: 9;
+        }
+
+        .ball {
+            position: absolute;
+            background-color: red;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            top: 80px;
+            left: 250px;
+        }
+
+        .fairy-left {
+            padding-top: 200px;
+            width: 0px;
+            height: 0px;
+            position: relative;
+            animation: left 5s linear 0s infinite;
+        }
+
+        .fairy-left::before {
+            content: " ";
+            position: absolute;
+            border-width: 100px;
+            border-radius: 50%;
+            border-style: solid;
+            border-top-color: yellow;
+            border-right-color: yellow;
+            border-bottom-color: yellow;
+            border-left-color: transparent;
+
+            animation: down 1s linear 0s infinite alternate;
+        }
+
+        .fairy-left::after {
+            content: " ";
+            position: absolute;
+            border-width: 100px;
+            border-radius: 50%;
+            border-style: solid;
+            border-top-color: yellow;
+            border-right-color: yellow;
+            border-bottom-color: yellow;
+            border-left-color: transparent;
+
+            animation: top 1s linear 0s infinite alternate;
+        }
+
+        .eye-left {
+            position: absolute;
+            background-color: black;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            top: 250px;
+            left: 130px;
+            z-index: 10;
+        }
+
+        @keyframes top {
+            0% {
+                transform: rotate(20deg);
+            }
+
+            100% {
+                transform: rotate(-20deg);
+            }
+        }
+
+        @keyframes down {
+            0% {
+                transform: rotate(-20deg);
+            }
+
+            100% {
+                transform: rotate(20deg);
+            }
+        }
+
+        @keyframes right {
+            0% {
+                left: -30%;
+            }
+
+            50% {
+                left: 105%;
+            }
+
+            100% {
+                left: 105%;
+            }
+        }
+
+        @keyframes left {
+            0% {
+                left: 105%;
+            }
+
+            50% {
+                left: 105%;
+            }
+
+            100% {
+                left: -30%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="fairy-right">
+        <div class="eye-right"></div>
+        <div class="ball"></div>
+    </div>
+    <div class="fairy-left">
+        <div class="eye-left"></div>
+    </div>
+    <div class="fairy-left">
+        <div class="eye-left"></div>
+    </div>
+    <div class="fairy-left">
+        <div class="eye-left"></div>
+    </div>
+</body>
+
+</html>
